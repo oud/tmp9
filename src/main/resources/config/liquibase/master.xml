@@ -19,7 +19,14 @@
     <property name="timeType" value="time" dbms="oracle"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250402131914_added_entity_PmEntreprise.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250402131915_added_entity_Adresse.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250402131916_added_entity_Telephone.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250402131917_added_entity_Email.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250402131918_added_entity_PmEtablissement.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20250402131914_added_entity_constraints_PmEntreprise.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250402131918_added_entity_constraints_PmEtablissement.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>
