@@ -1,0 +1,299 @@
+<div>
+  <h2 id="page-heading" data-cy="PmEntrepriseHeading">
+    <span jhiTranslate="tmp9App.pmEntreprise.home.title">Pm Entreprises</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="tmp9App.pmEntreprise.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-pm-entreprise"
+        [routerLink]="['/pm-entreprise/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tmp9App.pmEntreprise.home.createLabel">Create a new Pm Entreprise</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (pmEntreprises().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="tmp9App.pmEntreprise.home.notFound">No Pm Entreprises found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="idEntrepriseRPG">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.idEntrepriseRPG">Id Entreprise RPG</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codePartenaireDistributeur">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.codePartenaireDistributeur">Code Partenaire Distributeur</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroSiretSiege">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.numeroSiretSiege">Numero Siret Siege</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeEtat">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.codeEtat">Code Etat</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="libelleEtat">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.libelleEtat">Libelle Etat</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeCategoriePersonne">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.codeCategoriePersonne">Code Categorie Personne</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="libelleCategoriePersonne">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.libelleCategoriePersonne">Libelle Categorie Personne</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeType">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.codeType">Code Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateCreationJuridique">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.dateCreationJuridique">Date Creation Juridique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateEtat">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.dateEtat">Date Etat</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateFermetureJuridique">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.dateFermetureJuridique">Date Fermeture Juridique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeTrancheEffectif">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.codeTrancheEffectif">Code Tranche Effectif</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="libelleTrancheEffectif">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.libelleTrancheEffectif">Libelle Tranche Effectif</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateCessationActivite">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.dateCessationActivite">Date Cessation Activite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateEffectifOfficiel">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.dateEffectifOfficiel">Date Effectif Officiel</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="effectifOfficiel">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.effectifOfficiel">Effectif Officiel</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeMotifCessationActivite">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.codeMotifCessationActivite">Code Motif Cessation Activite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="siren">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.siren">Siren</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeFormeJuridique">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.codeFormeJuridique">Code Forme Juridique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="raisonSociale">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.raisonSociale">Raison Sociale</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeCategorieJuridique">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.codeCategorieJuridique">Code Categorie Juridique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeIDCC">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.codeIDCC">Code IDCC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeAPE">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.codeAPE">Code APE</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adresse.id">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.adresse">Adresse</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="email.id">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.email">Email</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="telephone.id">
+              <div class="d-flex">
+                <span jhiTranslate="tmp9App.pmEntreprise.telephone">Telephone</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (pmEntreprise of pmEntreprises(); track trackId(pmEntreprise)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/pm-entreprise', pmEntreprise.id, 'view']">{{ pmEntreprise.id }}</a>
+              </td>
+              <td>{{ pmEntreprise.idEntrepriseRPG }}</td>
+              <td>{{ pmEntreprise.codePartenaireDistributeur }}</td>
+              <td>{{ pmEntreprise.numeroSiretSiege }}</td>
+              <td>{{ pmEntreprise.codeEtat }}</td>
+              <td>{{ pmEntreprise.libelleEtat }}</td>
+              <td>{{ pmEntreprise.codeCategoriePersonne }}</td>
+              <td>{{ pmEntreprise.libelleCategoriePersonne }}</td>
+              <td>{{ pmEntreprise.codeType }}</td>
+              <td>{{ pmEntreprise.dateCreationJuridique | formatMediumDate }}</td>
+              <td>{{ pmEntreprise.dateEtat | formatMediumDate }}</td>
+              <td>{{ pmEntreprise.dateFermetureJuridique | formatMediumDate }}</td>
+              <td>{{ pmEntreprise.codeTrancheEffectif }}</td>
+              <td>{{ pmEntreprise.libelleTrancheEffectif }}</td>
+              <td>{{ pmEntreprise.dateCessationActivite | formatMediumDate }}</td>
+              <td>{{ pmEntreprise.dateEffectifOfficiel | formatMediumDate }}</td>
+              <td>{{ pmEntreprise.effectifOfficiel }}</td>
+              <td>{{ pmEntreprise.codeMotifCessationActivite }}</td>
+              <td>{{ pmEntreprise.siren }}</td>
+              <td>{{ pmEntreprise.codeFormeJuridique }}</td>
+              <td>{{ pmEntreprise.raisonSociale }}</td>
+              <td>{{ pmEntreprise.codeCategorieJuridique }}</td>
+              <td>{{ pmEntreprise.codeIDCC }}</td>
+              <td>{{ pmEntreprise.codeAPE }}</td>
+              <td>
+                @if (pmEntreprise.adresse) {
+                  <div>
+                    <a [routerLink]="['/adresse', pmEntreprise.adresse.id, 'view']">{{ pmEntreprise.adresse.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (pmEntreprise.email) {
+                  <div>
+                    <a [routerLink]="['/email', pmEntreprise.email.id, 'view']">{{ pmEntreprise.email.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (pmEntreprise.telephone) {
+                  <div>
+                    <a [routerLink]="['/telephone', pmEntreprise.telephone.id, 'view']">{{ pmEntreprise.telephone.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/pm-entreprise', pmEntreprise.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/pm-entreprise', pmEntreprise.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(pmEntreprise)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

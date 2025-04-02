@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity PmEtablissement.
+    -->
+    <changeSet id="20250402131918-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="adresse_id"
+                                 baseTableName="pm_etablissement"
+                                 constraintName="fk_pm_etablissement__adresse_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="adresse"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="email_id"
+                                 baseTableName="pm_etablissement"
+                                 constraintName="fk_pm_etablissement__email_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="email"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="telephone_id"
+                                 baseTableName="pm_etablissement"
+                                 constraintName="fk_pm_etablissement__telephone_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="telephone"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="pm_entreprise_id"
+                                 baseTableName="pm_etablissement"
+                                 constraintName="fk_pm_etablissement__pm_entreprise_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pm_entreprise"
+                                 />
+    </changeSet>
+</databaseChangeLog>

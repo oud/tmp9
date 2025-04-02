@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (adresse(); as adresseRef) {
+      <div>
+        <h2 data-cy="adresseDetailsHeading"><span jhiTranslate="tmp9App.adresse.detail.title">Adresse</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ adresseRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp9App.adresse.codePaysISO">Code Pays ISO</span></dt>
+          <dd>
+            <span>{{ adresseRef.codePaysISO }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp9App.adresse.codePostal">Code Postal</span></dt>
+          <dd>
+            <span>{{ adresseRef.codePostal }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp9App.adresse.dateDerniereModification">Date Derniere Modification</span></dt>
+          <dd>
+            <span>{{ adresseRef.dateDerniereModification | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp9App.adresse.libelleCommune">Libelle Commune</span></dt>
+          <dd>
+            <span>{{ adresseRef.libelleCommune }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp9App.adresse.ligne1">Ligne 1</span></dt>
+          <dd>
+            <span>{{ adresseRef.ligne1 }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp9App.adresse.ligne2">Ligne 2</span></dt>
+          <dd>
+            <span>{{ adresseRef.ligne2 }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp9App.adresse.ligne3">Ligne 3</span></dt>
+          <dd>
+            <span>{{ adresseRef.ligne3 }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp9App.adresse.ligne4">Ligne 4</span></dt>
+          <dd>
+            <span>{{ adresseRef.ligne4 }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp9App.adresse.ligne5">Ligne 5</span></dt>
+          <dd>
+            <span>{{ adresseRef.ligne5 }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp9App.adresse.ligne6">Ligne 6</span></dt>
+          <dd>
+            <span>{{ adresseRef.ligne6 }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp9App.adresse.ligne7">Ligne 7</span></dt>
+          <dd>
+            <span>{{ adresseRef.ligne7 }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp9App.adresse.nombreCourriersPND">Nombre Courriers PND</span></dt>
+          <dd>
+            <span>{{ adresseRef.nombreCourriersPND }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp9App.adresse.codeUsageAdresse">Code Usage Adresse</span></dt>
+          <dd>
+            <span>{{ adresseRef.codeUsageAdresse }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/adresse', adresseRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
